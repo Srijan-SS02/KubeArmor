@@ -10,7 +10,14 @@ permissions:
 
 jobs:
   goreleaser:
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
     if: github.repository == 'kubearmor/kubearmor'
     steps:
       - uses: actions/checkout@v3
