@@ -23,7 +23,14 @@ jobs:
     defaults:
       run:
         working-directory: ./pkg/KubeArmorOperator
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
     timeout-minutes: 20
     steps:
       - uses: actions/setup-go@v3
