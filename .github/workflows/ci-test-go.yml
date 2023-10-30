@@ -8,7 +8,14 @@ on:
 
 jobs:
   go-fmt:
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
     steps:
       - uses: actions/checkout@v3
 
@@ -21,7 +28,15 @@ jobs:
         working-directory: KubeArmor
 
   go-lint:
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
+        
     steps:
       - uses: actions/checkout@v3
 
@@ -35,7 +50,15 @@ jobs:
           path: "./KubeArmor/..."
 
   go-lint-tests:
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
+
     steps:
       - uses: actions/checkout@v3
 
@@ -49,7 +72,15 @@ jobs:
           path: "./tests/..."
 
   go-sec:
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
+        
     steps:
       - uses: actions/checkout@v3
 
@@ -62,7 +93,14 @@ jobs:
         working-directory: KubeArmor
 
   go-test:
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
     steps:
       - uses: actions/checkout@v3
 
@@ -75,7 +113,14 @@ jobs:
         working-directory: KubeArmor
 
   license:
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
     steps:
       - uses: actions/checkout@v3
 
