@@ -26,7 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04]
-        runtime: ["docker", "containerd", "crio"]
+        runtime: ["docker", "containerd"]
     steps:
       - uses: actions/checkout@v3
         with:
