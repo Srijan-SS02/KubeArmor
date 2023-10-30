@@ -15,10 +15,15 @@ on:
 jobs:
   lint:
     name: ${{ matrix.name }}
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    env:
+      RUNTIME: ${{ matrix.runtime }}
     strategy:
+      fail-fast: false
       matrix:
         name: ["Helm Chart Tests"]
+        os: [ubuntu-22.04]
+        runtime: ["docker", "containerd", "crio"]
     steps:
       - uses: actions/checkout@v3
         with:
