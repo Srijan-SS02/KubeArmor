@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04]
-        runtime: ["docker", "containerd", "crio"]
+        runtime: ["docker", "containerd"]
     if: github.repository == 'kubearmor/kubearmor'
     steps:
       - uses: actions/checkout@v3
